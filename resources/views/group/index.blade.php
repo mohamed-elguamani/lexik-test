@@ -32,7 +32,13 @@
                 <th scope="row">{{$group->id}}</th>
                 <td>{{$group->name}}</td>
                 <td>{{$group->created_at}}</td>
-                <td>@mdo</td>
+                <td>
+                    <form method="post" action="{{route('group.destroy',$group->id)}}">
+                        {{csrf_field()}}
+                        {{ method_field("DELETE") }}
+                        <button type="submit" class="btn btn-danger mb-2">delete</button>
+                    </form>
+                </td>
             </tr>
           @endforeach  
         </tbody>

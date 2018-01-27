@@ -1,0 +1,27 @@
+//navbar
+.main-navbar{
+    border-bottom: 8px solid #ff740c;
+
+    .nav-link {
+        color: #495057!important;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}
+//main content
+.main-content{
+    padding: 30px 0px;
+}
+//footer
+footer{
+
+    color:$body-bg;
+    background-color: #060c17;
+    padding: 40px 0px;
+
+    a{
+        color: #fff;
+        font-weight: bold;
+    }
+
+}

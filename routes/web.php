@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//group routes
+Route::resource('group','GroupController',['except'=>['create','show']]);

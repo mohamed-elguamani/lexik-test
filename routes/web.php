@@ -11,12 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+//get all users with groups
+Route::get('/','HomeController@index')->name('home');
+//filter users
+Route::get('/filter','HomeController@filter')->name('filter');
 //group routes
 Route::resource('group','GroupController',['except'=>['create','show']]);
-
 //user routes
 Route::resource('user','UserController');

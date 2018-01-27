@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Group;
+
 class GroupController extends Controller
 {
     /**
@@ -13,7 +15,9 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        //select all groups
+        $groups = Group::all();
+        return view('group.index',['groups'=>$groups]);
     }
 
     /**

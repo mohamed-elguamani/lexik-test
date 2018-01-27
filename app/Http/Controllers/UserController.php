@@ -78,7 +78,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //find user
+        //find user to show
         $user = User::find($id);
         return view('user.show',['user'=> $user]);
     }
@@ -91,7 +91,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        //find user to update
+        $user = User::find($id);
+        //get all groups
+        $groups= Group::all();
+        return view('user.edit',['user'=> $user,'groups'=>$groups]);
     }
 
     /**
@@ -103,7 +107,29 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       //validation
+        $request->validate([
+            
+            'firstname' => 'bail|required|max:255',
+            'lastname' => 'required|max:255',
+            'email' => 'required|email',
+            'birthday' => 'required',
+            'group' => 'required'
+        ]);
+
+        // user to update
+        $user = User::find($id);
+        $user->firstname= $request->firstname;
+        $user->lastname= $request->lastname;
+        $user->email= $request->email;
+        $user->birthday = $request->birthday;
+        $user->group_id = $request->group;
+
+        //save user
+        $user->save();
+        
+        Session::flash('success','The user is successfully updated!');
+        return redirect('/user/');
     }
 
     /**

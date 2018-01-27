@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Group;
+use Session;
 
 class GroupController extends Controller
 {
@@ -21,16 +22,6 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,7 +29,18 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validation
+        $request->validate([
+            
+            'name' => 'bail|required|max:255',
+        ]);
+
+        // create new group
+        $group= new Group();
+        $group->name=$request->name;
+        $group->save();
+        Session::flash('success','The new group was added successfully!');
+        return redirect('/group/');
     }
 
     /**
@@ -60,7 +62,7 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

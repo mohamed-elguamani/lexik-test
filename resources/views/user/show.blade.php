@@ -10,7 +10,8 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{$user->email}}</h5>
-                <h5 class="card-title">{{$user->birthday}}</h5>
+                <h5 class="card-title">{{date('d/m/Y',strtotime($user->birthday))}}</h5>
+                <h5 class="card-title"><strong>{{$user->age()}}</strong> years old</h5>
                 <p class="card-text">This user is member of <strong>{{$user->group->name}}</strong> group</p>
                 
             </div>

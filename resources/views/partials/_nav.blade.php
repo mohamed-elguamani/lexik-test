@@ -16,7 +16,7 @@
             <a class="nav-link" href="{{route('group.index')}}">Groups</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Users</a>
+            <a class="nav-link" href="{{route('user.index')}}">Users</a>
         </li>
         </ul>
 

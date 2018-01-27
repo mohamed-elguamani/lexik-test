@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
+use App\User;
+use App\Group;
 
 class UserController extends Controller
 {
@@ -13,7 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        // get all users
+        $users = User::all();
+
+        return view('user.index',['users'=>$users]);
     }
 
     /**
@@ -23,7 +29,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        //get all groups
+        $groups= Group::all();
+
+        return view('user.create',['groups'=>$groups]);
+
     }
 
     /**
@@ -34,7 +44,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //validation
+        $request->validate([
+            
+            'firstname' => 'bail|required|max:255',
+            'lastname' => 'required|max:255',
+            'email' => 'required|email',
+            'birthday' => 'required',
+            'group' => 'required'
+        ]);
+
+        // create new user
+        $user = new User();
+        $user->firstname= $request->firstname;
+        $user->lastname= $request->lastname;
+        $user->email= $request->email;
+        $user->birthday = $request->birthday;
+        $user->group_id = $request->group;
+
+        //save user
+        $user->save();
+        
+        Session::flash('success','A new user is added successfully!');
+        return redirect('/user/');
     }
 
     /**

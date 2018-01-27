@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 //group routes
 Route::resource('group','GroupController',['except'=>['create','show']]);
+
+//user routes
+Route::resource('user','UserController');

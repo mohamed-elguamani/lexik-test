@@ -11,4 +11,9 @@ class User extends Model
 
         return $this->belongsTo('App\Group');
     }
+
+    // //calculate user age
+    // public function age() {
+    //     return $this->birthday->diffInYears(\Carbon::now());
+    // }
 }

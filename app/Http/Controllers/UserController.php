@@ -78,7 +78,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        //find user
+        $user = User::find($id);
+        return view('user.show',['user'=> $user]);
     }
 
     /**
@@ -112,6 +114,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //find user to delete
+        $user=User::find($id);
+        $user->delete();
+
+        Session::flash('success','The user is deleted successfully!');
+        return redirect('/user/');
     }
 }

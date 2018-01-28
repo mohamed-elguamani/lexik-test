@@ -3,6 +3,7 @@
 @section('content')
 
     <div class="row top-form">
+
         
         <form class="form-inline" method="post" action="{{route('group.store')}}">
             {{csrf_field()}}
@@ -31,7 +32,7 @@
             <tr>
                 <th scope="row">{{$group->id}}</th>
                 <td>{{$group->name}}</td>
-                <td>{{$group->created_at}}</td>
+                <td>{{date('d/m/Y',strtotime($group->created_at))}}</td>
                 <td>
                     <form method="post" action="{{route('group.destroy',$group->id)}}">
                         {{csrf_field()}}

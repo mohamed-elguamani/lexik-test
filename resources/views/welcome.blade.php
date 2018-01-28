@@ -2,23 +2,30 @@
 @section('title','Welcome')
 @section('content')
 
-    <div class=" row top-form">
-        <div class="col-md-12">
-          <form action="{{route('filter')}}" method="get">
-            
-            <div class="form-group row">
-                <div class="col-md-11">
-                    <input type="text" class="form-control" id="name" name="filter" placeholder="Filter" value="{{old('filter')}}">
-                </div>
-                <div class="col-md-1">
-                    <button type="submit" class="btn btn-primary mb-2"> Filter</button>
-                </div>
-            </div> 
-          </form>
-         </div>   
+    <div class=" row">
+
+        <div class="top-actions">
+
+            <a href="{{route('user.create')}}" class="btn btn-primary pull-right">+ New User</a>
+            <a href="#" class="btn btn-danger pull-right">Bulk Delete</a>
+        </div>   
+        
     </div>    
 
     <div class="row">
+        <div class="box-header">
+            <h3 class="box-title">List users</h3>
+            <div class="box-tools">
+                <form action="{{route('filter')}}" method="get">
+                    <div class="input-group input-group-sm" style="width: 200px;">
+                    <input type="text" name="filter" class="form-control pull-right" placeholder="Search">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                    </div>
+                </form>
+            </div>    
+        </div>    
         <table class="table table-striped">
         <thead>
             <tr>
@@ -33,7 +40,11 @@
 
            @if ($users->count()==0)
            <tr>
-           <p><strong>No results were found</strong></p>
+           <th><strong>No results were found</strong></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
            <tr>
            @endif 
           @foreach($users as $user)  
@@ -45,8 +56,9 @@
                 <td>{{$user->email}}</td>
 
                 <td class="actions">
-                    <a href="{{route('user.show',$user->id)}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                    <a href="{{route('user.edit',$user->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{route('user.show',$user->id)}}"><i class="fa fa-eye text-info" aria-hidden="true"></i></a>
+                    <a href="{{route('user.edit',$user->id)}}"><i class="fa fa-pencil-square-o text-success" aria-hidden="true"></i></a>
+                    <a href="{{route('user.show',$user->id)}}"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
                 </td>
             </tr>
           @endforeach  

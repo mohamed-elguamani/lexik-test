@@ -10027,3 +10027,36 @@ footer a {
   padding: 0px 10px;
 }
 
+.box-header {
+  color: #444;
+  display: block;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+  border-top: 3px solid #d2d6de;
+}
+
+.box-header .box-title {
+  display: inline-block;
+  font-size: 18px;
+  margin: 0;
+  line-height: 1;
+}
+
+.box-header .box-tools {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.top-actions {
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.top-actions a {
+  margin: 0px 10px;
+  padding: 0px 10px;
+}
+

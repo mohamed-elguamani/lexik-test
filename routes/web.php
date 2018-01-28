@@ -15,6 +15,8 @@
 Route::get('/','HomeController@index')->name('home');
 //filter users
 Route::get('/filter','HomeController@filter')->name('filter');
+//bulk delete  
+Route::delete('/bulk-delete','HomeController@bulkDelete')->name('bulk-delete');
 //group routes
 Route::resource('group','GroupController',['except'=>['create','show']]);
 //user routes

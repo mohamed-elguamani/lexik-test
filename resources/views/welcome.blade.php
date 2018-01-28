@@ -7,7 +7,7 @@
         <div class="top-actions">
 
             <a href="{{route('user.create')}}" class="btn btn-primary pull-right">+ New User</a>
-            <a href="#" class="btn btn-danger pull-right">Bulk Delete</a>
+            <a href="#" class="btn btn-danger pull-right" data-toggle="modal" data-target="#bulk-delete">Bulk Delete</a>
         </div>   
         
     </div>    
@@ -71,7 +71,42 @@
         </div>    
         @endif
 
-    </div>     
+    </div>   
+
+<!-- Bulk delete Modal -->
+<div class="modal fade" id="bulk-delete" tabindex="-1" role="dialog" aria-labelledby="bulk-deleteLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bulk-deleteLabel">Select users to delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" action="{{route('bulk-delete')}}">
+        <div class="modal-body">
+            
+                {{method_field('delete')}}
+                {{csrf_field()}}
+                <div class="form-group">
+                    @foreach ($users as $user)
+                        <div class="checkbox">
+                            <label>
+                            <input type="checkbox" name="list[]" value="{{$user->id}}" > {{$user->lastname}}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
+      </form> 
+    </div>
+  </div>
+</div>  
 
 @endsection
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Session;
 
 class HomeController extends Controller
 {
@@ -19,6 +20,8 @@ class HomeController extends Controller
                     ->select('users.*', 'groups.name as group')
                     ->orderBy('group','asc')
                     ->get();
+
+         //data not filtred           
          $isFiltered =false;            
         // return the result on home page           
         return view('welcome',['users'=>$users,'isFiltered'=>$isFiltered]);
@@ -36,9 +39,25 @@ class HomeController extends Controller
                     ->where('users.lastname','like','%'.$request->filter.'%')
                     ->orWhere('groups.name','like','%'.$request->filter.'%')
                     ->get();
+
+         // data is filtred           
          $isFiltered =true;           
         // return the result on home page           
         return view('welcome',['users'=>$users,'isFiltered'=>$isFiltered]);
 
     }
+
+    // bulk delete
+
+    public function bulkDelete(Request $request){
+
+        // delete selected users
+        DB::table('users')->whereIn('id', $request->list)->delete();
+        
+        Session::flash('success','delete is successfully done!');
+        return redirect('/');
+
+    }
+
+
 }
